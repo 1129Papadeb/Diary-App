@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Example custom styles (can be expanded) */
+.container {
+    @apply max-w-md mx-auto p-4;
+}
