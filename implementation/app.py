@@ -280,5 +280,10 @@ def get_data():
         print("Error reading CSV:", e)
     return jsonify(data)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
