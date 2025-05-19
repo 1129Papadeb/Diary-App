@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../static/style.css">
 </head>
 
-<body class="min-h-screen bg-gray-50 font-['Poppins'] relative">
+<body class="min-h-screen bg-purple-200 font-['Poppins'] relative">
     <!-- Decorative elements - More blurry circles -->
     <div class="fixed top-20 left-10 h-64 w-64 bg-purple-300 rounded-full opacity-20 blur-3xl -z-10"></div>
     <div class="fixed bottom-20 right-10 h-80 w-80 bg-pink-300 rounded-full opacity-20 blur-3xl -z-10"></div>
@@ -34,10 +34,15 @@
                 </div>                
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-6">
-                    <a href="/" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">Home</a>
-                    <a href="/diary" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">Write Entry</a>
-                    <a href="/about" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">About Us</a>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-6">
+                        <a href="/"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="/about" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">About Us</a>
+                        <a href="/diary"
+                            class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-105">Write
+                            in Diary</a>
+                    </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
