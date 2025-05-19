@@ -8,11 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="min-h-screen bg-gray-50 font-['Poppins']">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
+    <!-- Navbar - Glass effect -->
+    <nav class="bg-white/70 backdrop-blur-md shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
@@ -27,8 +28,10 @@
                     <div class="ml-10 flex items-center space-x-6">
                         <a href="/"
                             class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
-                        <a href="#features"
-                            class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors">Features</a>
+                        <a href="/entries"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors">My Entries</a>
+                        <a href="/about"
+                            class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition-colors">About Us</a>
                         <a href="/diary"
                             class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-105">Write
                             in Diary</a>
@@ -37,7 +40,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button type="button"
+                    <button type="button" id="mobile-menu-button"
                         class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -49,11 +52,12 @@
             </div>
         </div>
 
-        <div class="hidden md:hidden">
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="/" class="block text-gray-700 hover:text-purple-600 px-3 py-2 text-base font-medium">Home</a>
-                <a href="/features"
-                    class="block text-gray-700 hover:text-purple-600 px-3 py-2 text-base font-medium">Features</a>
+                <a href="/entries" class="block text-gray-700 hover:text-purple-600 px-3 py-2 text-base font-medium">My Entries</a>
+                <a href="/about" class="block text-gray-700 hover:text-purple-600 px-3 py-2 text-base font-medium">About Us</a>
                 <a href="/diary"
                     class="block bg-gradient-to-r from-purple-600 to-blue-500 text-white px-3 py-2 text-base font-medium rounded-md">Write
                     in Diary</a>
@@ -61,8 +65,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 py-20 md:py-28">
+    <!-- Hero Section - Fixed height -->
+    <section class="bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 h-[600px] flex items-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center">
                 <!-- Hero Text -->
@@ -106,7 +110,7 @@
                                     it was challenging, I managed to overcome the obstacles and deliver quality work.
                                     I'm proud of what I accomplished.</p>
                                 <div class="bg-purple-50 border border-purple-100 rounded-lg p-3">
-                                    <p class="text-purple-800 text-xs font-medium">AI Insight:</p>
+                                    <p class="text-purple-800 text-xs font-medium">You are feeling joy</p>
                                     <p class="text-purple-700 text-xs">I notice you've accomplished something
                                         significant! Your entries show increasing confidence in your abilities over the
                                         past month.</p>
@@ -256,8 +260,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
+    <!-- Footer - Consistent color -->
+    <footer class="bg-gradient-to-r from-purple-900 to-indigo-900 text-gray-300 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -272,9 +276,9 @@
                     <h4 class="text-white font-medium mb-4">Navigation</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-                        <li><a href="/features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="/entries" class="hover:text-white transition-colors">My Entries</a></li>
                         <li><a href="/diary" class="hover:text-white transition-colors">Write Entry</a></li>
-                        <li><a href="/entries" class="hover:text-white transition-colors">View Entries</a></li>
+                        <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
                     </ul>
                 </div>
 
@@ -301,47 +305,29 @@
                 <p class="text-sm">&copy; 2025 diAIry. All rights reserved.</p>
                 <div class="flex space-x-4 mt-4 md:mt-0">
                     <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
-                            </path>
-                        </svg>
+                        <i class="fab fa-twitter"></i>
                     </a>
                     <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
+                        <i class="fab fa-instagram"></i>
                     </a>
                     <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.408.593 24 1.324 24h11.494v-9.294H9.689v-3.621h3.129V8.41c0-3.099 1.894-4.785 4.659-4.785 1.325 0 2.464.097 2.796.141v3.24h-1.921c-1.5 0-1.792.721-1.792 1.771v2.311h3.584l-.465 3.63H16.56V24h6.115c.733 0 1.325-.592 1.325-1.324V1.324C24 .593 23.408 0 22.676 0">
-                            </path>
-                        </svg>
+                        <i class="fab fa-facebook"></i>
                     </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Add JavaScript for mobile menu toggle -->
     <script>
-        document.querySelector('button[aria-controls="mobile-menu"]').addEventListener('click', function () {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const expanded = this.getAttribute('aria-expanded') === 'true';
-
-            this.setAttribute('aria-expanded', !expanded);
-            mobileMenu.classList.toggle('hidden');
-
-            const openIcon = this.querySelector('svg.block');
-            const closeIcon = this.querySelector('svg.hidden');
-
-            openIcon.classList.toggle('hidden');
-            openIcon.classList.toggle('block');
-            closeIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('block');
-        });
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
     </script>
 </body>
 
