@@ -344,6 +344,11 @@ def get_data():
         print("Error reading CSV:", e)
     return jsonify(data)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0',      # or '127.0.0.1' if only local access is needed
