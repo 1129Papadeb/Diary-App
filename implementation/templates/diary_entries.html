@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
+
 <body class="bg-gradient-to-br from-purple-300 via-blue-300 to-green-300 min-h-screen flex flex-col">
     <nav class="bg-white bg-opacity-90 shadow-md">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,36 +67,135 @@
         </div>
     </nav>
     <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 animate-fade-in">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">Your Diary Entries
-        </h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">Your Diary Entries</h1>
+       
+        <!-- Emotion Chart -->
+<div style="
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 40px auto;
+">
+  <canvas id="emotionChart" width="600" height="400"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+fetch('/data')
+  .then(response => response.json())
+  .then(entries => {
+    const emotionCounts = {};
+
+    // Count emotion frequency
+    entries.forEach(entry => {
+      const emotion = entry.emotion;
+      emotionCounts[emotion] = (emotionCounts[emotion] || 0) + 1;
+    });
+
+    const emotions = Object.keys(emotionCounts);
+    const counts = Object.values(emotionCounts);
+
+    const backgroundColors = [
+      '#FF6384', '#36A2EB', '#FFCE56', '#8BC34A', '#FF9800',
+      '#9C27B0', '#00BCD4', '#E91E63', '#CDDC39', '#795548'
+    ];
+
+    const ctx = document.getElementById('emotionChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: emotions,
+        datasets: [{
+          label: 'Emotion Frequency',
+          data: counts,
+          backgroundColor: backgroundColors.slice(0, emotions.length),
+          borderRadius: 10,   // rounded corners
+          borderSkipped: false // full rounding
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Emotion Trends in Diary Entries',
+            font: {
+              size: 18
+            },
+            padding: {
+              top: 10,
+              bottom: 20
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: '#333',
+            titleFont: { size: 14 },
+            bodyFont: { size: 12 }
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Count'
+            },
+            ticks: {
+              stepSize: 1
+            },
+            grid: {
+              color: 'rgba(200, 200, 200, 0.2)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Emotion'
+            },
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+  });
+</script>
+
+
         {% if diary_entries %}
-        <ul>
-            {% for entry in diary_entries %}
-            <li
-                class="mb-6 p-4 sm:p-6 border border-gray-300 rounded-lg shadow-md bg-white transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1">
-                <div class="flex justify-between items-center">
-                    <a href="/entry/{{ entry[0] }}" class="block flex-grow cursor-pointer"> {# entry[0] is the ID #}
-                        <p class="text-sm sm:text-base text-gray-600 mb-2 font-semibold">{{ entry[1] }}</p> {# entry[1]
-                        is the timestamp #}
-                        <p class="text-gray-800 leading-relaxed text-base sm:text-lg font-bold">{{ entry[3] }}</p> {#
-                        entry[3] is the diary title #}
-                    </a>
-                    <div class="flex items-center space-x-4 ml-4"> {# Increased space-x for better separation #}
-                        <a href="/edit_entry/{{ entry[0] }}" class="text-blue-600 hover:text-blue-800 text-lg"> {#
-                            Increased text size for icon #}
-                            <i class="fas fa-pencil-alt"></i> {# Pencil icon #}
-                        </a>
-                        <form action="/delete_entry/{{ entry[0] }}" method="POST">
-                            <button type="submit" class="text-red-600 hover:text-red-800 text-lg"> {# Increased text
-                                size for icon #}
-                                <i class="fas fa-trash-alt"></i> {# Trash icon #}
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+            <ul>
+                {% for entry in diary_entries %}
+                    <li class="mb-6 p-4 sm:p-6 border border-gray-300 rounded-lg shadow-md bg-white transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1">
+                        <div class="flex justify-between items-center">
+                            <a href="/entry/{{ entry[0] }}" class="block flex-grow cursor-pointer"> {# entry[0] is the ID #}
+                                <p class="text-sm sm:text-base text-gray-600 mb-2 font-semibold">{{ entry[1] }}</p> {# entry[1] is the timestamp #}
+                                <p class="text-gray-800 leading-relaxed text-base sm:text-lg font-bold">{{ entry[3] }}</p> {# entry[3] is the diary title #}
+                            </a>
+                            <div class="flex items-center space-x-4 ml-4">
+                                <a href="/edit_entry/{{ entry[0] }}" class="text-blue-600 hover:text-blue-800 text-lg">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <form action="/delete_entry/{{ entry[0] }}" method="POST">
+                                    <button type="submit" class="text-red-600 hover:text-red-800 text-lg">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         {% else %}
         <p class="text-center text-base sm:text-lg text-gray-600">No diary entries saved yet.</p>
         {% endif %}
@@ -105,6 +205,7 @@
                 to Diary</a>
         </div>
     </main>
-</body>
 
+    <!-- Script for rendering the mood chart -->
+</body>
 </html>

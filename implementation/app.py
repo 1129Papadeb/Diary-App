@@ -8,8 +8,11 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
+from datetime import timedelta
 import datetime
+from collections import defaultdict, Counter
 from nltk.stem import PorterStemmer
+import os
 
 # Download necessary NLTK data
 try:
@@ -162,7 +165,15 @@ def get_diary_entry_by_id(entry_id):
 @app.route('/entries')
 def show_entries():
     diary_entries = get_diary_entries()
-    return render_template('diary_entries.html', diary_entries=diary_entries)
+
+    # Count the occurrences of each emotion
+    emotion_counter = Counter()
+    for entry in diary_entries:
+        if len(entry) > 1:
+            emotion = entry[1]  # Assuming [timestamp, emotion, title, text, feedback]
+            emotion_counter[emotion] += 1
+
+    return render_template('diary_entries.html', diary_entries=diary_entries, emotion_data=dict(emotion_counter))
 
 @app.route('/entry/<int:entry_id>')
 def show_single_entry(entry_id):
@@ -248,6 +259,26 @@ def generate_feedback(emotion):
     }
     # Return a single feedback message (you might want to add logic to choose one)
     return feedback_messages.get(emotion, ["No feedback available for this emotion."])
+
+@app.route("/data")
+def get_data():
+    data = []
+    try:
+        print("Looking in:", os.getcwd())
+        with open('diary_entries.csv', newline='', encoding='latin1') as csvfile:
+            reader = csv.DictReader(csvfile, fieldnames=["timestamp", "emotion", "title", "entry", "feedback"])
+            for row in reader:
+                print("Row read:", row)  # Debug
+                data.append({
+                    "timestamp": row["timestamp"],
+                    "emotion": row["emotion"],
+                    "title": row["title"],
+                    "entry": row["entry"],
+                    "feedback": row["feedback"]
+                })
+    except Exception as e:
+        print("Error reading CSV:", e)
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
