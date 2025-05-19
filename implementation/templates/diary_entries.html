@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body class="bg-gradient-to-br from-purple-300 via-blue-300 to-green-300 min-h-screen flex flex-col">
     <nav class="bg-white bg-opacity-90 shadow-md">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,22 +20,31 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="/" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="/diary" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Write Entry</a>
-                        <a href="/entries" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">View Entries</a>
+                        <a href="/"
+                            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="/diary"
+                            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Write
+                            Entry</a>
+
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
                     <!-- Mobile menu button -->
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <button type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                        aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <!-- Icon when menu is closed. -->
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                         <!-- Icon when menu is open. -->
-                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
@@ -43,43 +54,57 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="md:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/diary" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Write Entry</a>
-                <a href="/entries" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">View Entries</a>
+                <a href="/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/diary"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Write
+                    Entry</a>
+                <a href="/entries"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">View
+                    Entries</a>
             </div>
         </div>
     </nav>
     <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 animate-fade-in">
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">Your Diary Entries</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">Your Diary Entries
+        </h1>
         {% if diary_entries %}
-            <ul>
-                {% for entry in diary_entries %}
-                    <li class="mb-6 p-4 sm:p-6 border border-gray-300 rounded-lg shadow-md bg-white transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1">
-                        <div class="flex justify-between items-center">
-                            <a href="/entry/{{ entry[0] }}" class="block flex-grow cursor-pointer"> {# entry[0] is the ID #}
-                                <p class="text-sm sm:text-base text-gray-600 mb-2 font-semibold">{{ entry[1] }}</p> {# entry[1] is the timestamp #}
-                                <p class="text-gray-800 leading-relaxed text-base sm:text-lg font-bold">{{ entry[3] }}</p> {# entry[3] is the diary title #}
-                            </a>
-                            <div class="flex items-center space-x-4 ml-4"> {# Increased space-x for better separation #}
-                                <a href="/edit_entry/{{ entry[0] }}" class="text-blue-600 hover:text-blue-800 text-lg"> {# Increased text size for icon #}
-                                    <i class="fas fa-pencil-alt"></i> {# Pencil icon #}
-                                </a>
-                                <form action="/delete_entry/{{ entry[0] }}" method="POST">
-                                    <button type="submit" class="text-red-600 hover:text-red-800 text-lg"> {# Increased text size for icon #}
-                                        <i class="fas fa-trash-alt"></i> {# Trash icon #}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+        <ul>
+            {% for entry in diary_entries %}
+            <li
+                class="mb-6 p-4 sm:p-6 border border-gray-300 rounded-lg shadow-md bg-white transition duration-300 ease-in-out hover:shadow-lg transform hover:-translate-y-1">
+                <div class="flex justify-between items-center">
+                    <a href="/entry/{{ entry[0] }}" class="block flex-grow cursor-pointer"> {# entry[0] is the ID #}
+                        <p class="text-sm sm:text-base text-gray-600 mb-2 font-semibold">{{ entry[1] }}</p> {# entry[1]
+                        is the timestamp #}
+                        <p class="text-gray-800 leading-relaxed text-base sm:text-lg font-bold">{{ entry[3] }}</p> {#
+                        entry[3] is the diary title #}
+                    </a>
+                    <div class="flex items-center space-x-4 ml-4"> {# Increased space-x for better separation #}
+                        <a href="/edit_entry/{{ entry[0] }}" class="text-blue-600 hover:text-blue-800 text-lg"> {#
+                            Increased text size for icon #}
+                            <i class="fas fa-pencil-alt"></i> {# Pencil icon #}
+                        </a>
+                        <form action="/delete_entry/{{ entry[0] }}" method="POST">
+                            <button type="submit" class="text-red-600 hover:text-red-800 text-lg"> {# Increased text
+                                size for icon #}
+                                <i class="fas fa-trash-alt"></i> {# Trash icon #}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
         {% else %}
-            <p class="text-center text-base sm:text-lg text-gray-600">No diary entries saved yet.</p>
+        <p class="text-center text-base sm:text-lg text-gray-600">No diary entries saved yet.</p>
         {% endif %}
         <div class="flex justify-center mt-8 sm:mt-10">
-            <a href="/diary" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-teal-700 text-white font-bold py-3 px-6 sm:py-3 sm:px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:-translate-y-1 hover:shadow-xl text-base sm:text-lg">Back to Diary</a>
+            <a href="/diary"
+                class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-teal-700 text-white font-bold py-3 px-6 sm:py-3 sm:px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:-translate-y-1 hover:shadow-xl text-base sm:text-lg">Back
+                to Diary</a>
         </div>
     </main>
 </body>
+
 </html>
