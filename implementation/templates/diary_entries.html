@@ -113,7 +113,7 @@
                             datasets: [{
                                 label: 'Emotion Frequency',
                                 data: counts,
-                                backgroundColor: ['#36A2EB', '#D21404', '#FFCE56', '#FF9800', '#9C27B0','#8BC34A', '#FF6384' ],
+                                backgroundColor: backgroundColors,
                                 borderRadius: 10,
                                 borderSkipped: false
                             }]
@@ -143,6 +143,43 @@
                     });
                 });
         </script>
+
+        <!-- Search and Filter -->
+        <div class="bg-white/60 backdrop-blur-md rounded-xl p-6 max-w-3xl mx-auto mb-8 border border-white/20">
+            <form action="/entries" method="GET" class="space-y-4">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" name="search" placeholder="Search entries..."
+                            value="{{ search_term }}"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div class="flex-1">
+                        <input type="date" name="date"
+                            value="{{ date_filter }}"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <button type="submit"
+                        class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-search mr-2"></i>Search
+                    </button>
+                </div>
+            </form>
+            {% if search_term or date_filter %}
+            <div class="mt-4 flex justify-between items-center text-sm text-gray-600">
+                <div>
+                    {% if search_term %}
+                    <span class="mr-2">Search: "{{ search_term }}"</span>
+                    {% endif %}
+                    {% if date_filter %}
+                    <span>Date: {{ date_filter }}</span>
+                    {% endif %}
+                </div>
+                <a href="/entries" class="text-purple-600 hover:text-purple-800">
+                    <i class="fas fa-times mr-1"></i>Clear filters
+                </a>
+            </div>
+            {% endif %}
+        </div>
 
         <!-- Diary Entries -->
         <div class="mt-12">

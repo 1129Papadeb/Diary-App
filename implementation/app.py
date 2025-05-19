@@ -344,15 +344,10 @@ def get_data():
         print("Error reading CSV:", e)
     return jsonify(data)
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0',      # or '127.0.0.1' if only local access is needed
         port=5000,           # any port you like (default is 5000)
-        debug=False,         # turn off debugger to prevent reload loops
-        use_reloader=False   # <- THIS is key to stop infinite reloads
+        debug=True,         # turn off debugger to prevent reload loops
+        use_reloader=True   # <- THIS is key to stop infinite reloads
     )
