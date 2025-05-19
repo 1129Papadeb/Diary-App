@@ -1,79 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diary Entry</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gradient-to-br from-purple-300 via-blue-300 to-green-300 min-h-screen flex flex-col">
-    <nav class="bg-white bg-opacity-90 shadow-md">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 text-xl font-bold text-gray-800">
-                        Diary App
-                    </div>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-500"></div>
+                    <span class="text-xl font-bold text-gray-800">
+                        di<span class="text-purple-600">AI</span>ry
+                    </span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="/" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="/diary" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Write Entry</a>
-                        <a href="/entries" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">View Entries</a>
-                    </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">Home</a>
+                    <a href="/diary" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">Write
+                        Entry</a>
+                    <a href="/entries" class="text-gray-700 hover:text-purple-600 text-sm font-medium transition">View
+                        Entries</a>
                 </div>
-                <div class="-mr-2 flex md:hidden">
-                    <!-- Mobile menu button -->
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <!-- Icon when menu is closed. -->
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <!-- Icon when menu is open. -->
-                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button type="button"
+                        class="p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="md:hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/diary" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Write Entry</a>
-                <a href="/entries" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">View Entries</a>
-            </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden px-4 pt-2 pb-4 space-y-2">
+            <a href="/" class="block text-gray-700 hover:text-purple-600 text-base font-medium">Home</a>
+            <a href="/features" class="block text-gray-700 hover:text-purple-600 text-base font-medium">Features</a>
+            <a href="/diary"
+                class="block bg-gradient-to-r from-purple-600 to-blue-500 text-white text-base font-medium px-4 py-2 rounded-lg text-center">Write
+                in Diary</a>
         </div>
     </nav>
-    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 animate-fade-in">
-        <div class="p-6 sm:p-8 md:p-10 lg:p-12 animate-fade-in max-w-3xl mx-auto bg-white bg-opacity-90 rounded-xl shadow-2xl">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">Diary Entry</h1>
+    <main class="flex-grow min-h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+        <div
+            class="p-6 sm:p-8 md:p-10 lg:p-12 max-w-3xl w-full bg-white bg-opacity-90 rounded-xl shadow-2xl animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">Diary Entry
+            </h1>
 
-            <p class="text-sm sm:text-base text-gray-600 mb-2 text-center font-semibold">{{ entry[1] }}</p> {# Date and Time #}
-            <p class="text-lg sm:text-xl font-bold text-gray-800 mb-6 text-center">{{ entry[3] }}</p> {# Diary Title #}
+            <p class="text-sm sm:text-base text-gray-600 mb-2 text-center font-semibold">{{ entry[1] }}</p>
+            <p class="text-lg sm:text-xl font-bold text-gray-800 mb-6 text-center">{{ entry[3] }}</p>
 
             <div class="mb-8 p-4 sm:p-6 border border-gray-300 rounded-lg shadow-md bg-gray-50">
-                <p class="text-gray-800 leading-relaxed text-base sm:text-lg">{{ entry[4] }}</p> {# Diary Entry Text #}
+                <p class="text-gray-800 leading-relaxed text-base sm:text-lg">{{ entry[4] }}</p>
             </div>
 
-            <p class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center">Emotion: <span class="capitalize text-blue-700">{{ entry[2] }}</span></p> {# Predicted Emotion #}
+            <p class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center">Emotion:
+                <span class="capitalize text-blue-700">{{ entry[2] }}</span>
+            </p>
 
             <div class="flex items-start space-x-4 mb-8">
-                <!-- Robot Logo -->
-                 <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 shadow-md">🤖</div>
+                <div
+                    class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-md">
+                    🤖
+                </div>
                 <div class="bg-blue-100 p-4 rounded-lg shadow-sm flex-grow">
-                    <p class="text-gray-700 leading-relaxed text-sm sm:text-base">{{ entry[5] }}</p> {# Feedback #}
+                    <p class="text-gray-700 leading-relaxed text-sm sm:text-base">{{ entry[5] }}</p>
                 </div>
             </div>
 
             <div class="flex justify-center mt-8 sm:mt-10">
-                <a href="/entries" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-teal-700 text-white font-bold py-3 px-6 sm:py-3 sm:px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:-translate-y-1 hover:shadow-xl text-base sm:text-lg">Back to Entries</a>
+                <a href="/entries"
+                    class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 cursor-pointer">
+                    Back to Entries
+                </a>
             </div>
         </div>
     </main>
+
     <script src="../static/script.js"></script>
 </body>
+
 </html>

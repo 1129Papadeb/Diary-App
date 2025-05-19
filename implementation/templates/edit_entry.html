@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Diary Entry</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-gradient-to-br from-purple-300 via-blue-300 to-green-300 min-h-screen flex flex-col">
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
     <nav class="bg-white bg-opacity-90 shadow-md">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -17,22 +19,33 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="/" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="/diary" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Write Entry</a>
-                        <a href="/entries" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">View Entries</a>
+                        <a href="/"
+                            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="/diary"
+                            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Write
+                            Entry</a>
+                        <a href="/entries"
+                            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">View
+                            Entries</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
                     <!-- Mobile menu button -->
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <button type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                        aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <!-- Icon when menu is closed. -->
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                         <!-- Icon when menu is open. -->
-                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
@@ -42,23 +55,35 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="md:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="/" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="/diary" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Write Entry</a>
-                <a href="/entries" class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">View Entries</a>
+                <a href="/"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/diary"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Write
+                    Entry</a>
+                <a href="/entries"
+                    class="text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">View
+                    Entries</a>
             </div>
         </div>
     </nav>
     <main class="flex-grow flex items-center justify-center p-4 sm:p-6">
-        <div class="p-4 sm:p-6 md:p-8 lg:p-10 animate-fade-in max-w-lg w-full">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 text-center tracking-wide">Edit Diary Entry</h1>
+        <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6 sm:p-10 animate-fade-in transition-all z-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 text-center tracking-wide">Edit Diary
+                Entry</h1>
             <form action="/update_entry/{{ entry[0] }}" method="POST">
-                <input type="text" id="diaryTitle" name="title" placeholder="Diary Title" class="w-full p-3 sm:p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 text-gray-800 text-base sm:text-lg" value="{{ entry[3] }}">
-                <textarea id="diaryInput" name="diary_entry" placeholder="Write your diary entry here..." class="w-full h-40 sm:h-48 p-3 sm:p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6 text-gray-800 resize-none transition duration-300 ease-in-out text-base sm:text-lg">{{ entry[4] }}</textarea>
+                <input type="text" id="diaryTitle" name="title" placeholder="Diary Title"
+                    class="w-full p-3 sm:p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 text-gray-800 text-base sm:text-lg font-bold"
+                    value="{{ entry[3] }}">
+                <textarea id="diaryInput" name="diary_entry" placeholder="Write your diary entry here..."
+                    class="w-full h-40 sm:h-48 p-3 sm:p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6 text-gray-800 resize-none transition duration-300 ease-in-out text-base sm:text-lg">{{ entry[4] }}</textarea>
                 <div class="flex justify-center">
-                    <button type="submit" class="bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-6 sm:py-3 sm:px-8 rounded-full transition duration-300 ease-in-out shadow-lg transform hover:-translate-y-1 hover:shadow-xl text-base sm:text-lg">Save Changes</button>
+                    <button type="submit"
+                        class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 cursor-pointer">Save
+                        Changes</button>
                 </div>
             </form>
         </div>
     </main>
 </body>
+
 </html>
