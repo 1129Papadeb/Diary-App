@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-soft {
+  0% { opacity: 0.7; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom utility classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Neumorphic elements */
+.neumorphic {
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.05),
+    -8px -8px 16px rgba(255, 255, 255, 0.8);
+}
+
+.neumorphic-inset {
+  box-shadow: 
+    inset 2px 2px 5px rgba(0, 0, 0, 0.05),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Custom components */
+.diary-card {
+  @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl;
+}
+
+.diary-input {
+  @apply w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-800 transition-all duration-200;
+}
+
+.diary-button {
+  @apply bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg;
+}
+
+.emotion-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.emotion-joy {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.emotion-sadness {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.emotion-anger {
+  @apply bg-red-100 text-red-800;
+}
+
+.emotion-fear {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.emotion-love {
+  @apply bg-pink-100 text-pink-800;
+}
+
+.emotion-surprise {
+  @apply bg-green-100 text-green-800;
+}
+
+.emotion-neutral {
+  @apply bg-gray-100 text-gray-800;
+}
+
+/* Container with responsive padding */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
