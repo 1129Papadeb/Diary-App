@@ -16,6 +16,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import random
 
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from werkzeug.wrappers import Request, Response
+
+
 # Download necessary NLTK data
 try:
     nltk.data.find('corpora/wordnet')
